@@ -13,13 +13,21 @@ hospedes.Add(p1);
 hospedes.Add(p2);
 
 // Cria a suíte
-Suite suite = new Suite(tipoSuite: "Premium", capacidade: 2, valorDiaria: 30);
+Suite suite = new Suite(tipoSuite: "Premium", capacidade: 2, valorDiaria: 50.5M);
 
 // Cria uma nova reserva, passando a suíte e os hóspedes
-Reserva reserva = new Reserva(diasReservados: 5);
+Reserva reserva = new Reserva(diasReservados: 15);
 reserva.CadastrarSuite(suite);
-reserva.CadastrarHospedes(hospedes);
 
+
+if(reserva.CadastrarHospedes(hospedes) == 1)
+{
 // Exibe a quantidade de hóspedes e o valor da diária
 Console.WriteLine($"Hóspedes: {reserva.ObterQuantidadeHospedes()}");
-Console.WriteLine($"Valor diária: {reserva.CalcularValorDiaria()}");
+Console.WriteLine($"Valor diária: {reserva.CalcularValorDiaria():C}");
+} 
+else
+{
+    Console.WriteLine("Não foi possivel cadastrar!\nA quantidade de hóspedes não pode ser maior que a capacidade da suíte");
+}
+
